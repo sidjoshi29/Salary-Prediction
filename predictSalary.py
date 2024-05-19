@@ -10,7 +10,6 @@ from sklearn.tree import DecisionTreeRegressor
 
 # Read the CSV file
 df = pd.read_csv("survey_results_public.csv")
-
 # Select relevant columns and rename for clarity
 df = df[["Country", "EdLevel", "YearsCodePro", "Employment", "ConvertedComp"]]
 df = df.rename({"ConvertedComp": "Salary"}, axis=1)
@@ -39,7 +38,7 @@ df['Country'] = df['Country'].map(country_map)
 
 # Filter salary ranges between 30k and 250k and exclude 'Other' countries
 df = df[df["Salary"] <= 250000]
-df = df[df["Salary"] >= 30000]
+df = df[df["Salary"] >= 6500]
 df = df[df['Country'] != 'Other']
 
 # Convert YearsCodePro to numeric
@@ -106,13 +105,12 @@ error = np.sqrt(mean_squared_error(y_test, predictions))
 
 
 # country, edlevel, yearscode - new array inputted by the user
-X = np.array([["United States", 'Bachelor’s degree', 7 ]])
+X = np.array([["United States", 'Master’s degree', 1]])
 
 #lets apply the label encoder for the params then predict the salary
-X[:, 0] = le_country.transform(X[:,0])
-X[:, 1] = le_education.transform(X[:,1])
+X[:, 0] = le_country.transform(X[:,0]) #index 0 is counrty
+X[:, 1] = le_education.transform(X[:,1]) #index 1 is EdLevel
 X = X.astype(float)
-# print(X)
 
 # test_pred = decisionTree.predict(X)
 # print(test_pred)
@@ -129,8 +127,8 @@ with open('salaryPrediction.pickle', 'rb') as f:
 
 #accessing the key
 loaded = data["model"]
-le_country = data["le_country"]
-le_education = data["le_education"]
+country = data["le_country"]
+education = data["le_education"]
 
 test_pred = loaded.predict(X)
 print(test_pred)
