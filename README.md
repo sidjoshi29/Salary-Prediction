@@ -3,4 +3,4 @@ Predict the Salary of a Sofwate Engineer using data from the Stack overflow deve
 
 Uses the Linear Regression Suprvised Machine Learning Algorithm and the Dataset is from the Stack Overflow Developer Survey.
 
-Link to working site: https://predsalary.streamlit.app/?embed_options=dark_theme
+Link to working site: (https://predsalary.streamlit.app/)
