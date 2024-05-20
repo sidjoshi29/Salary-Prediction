@@ -65,21 +65,12 @@ def viewData():
 
     st.write(
         """
-    #### Mean Salary Based On Experience
-    """
-    )
-
-    data = df.groupby(["YearsCodePro"])["Salary"].mean().sort_values(ascending=True)
-    st.line_chart(data)
-
-    st.write(
-        """
     #### Mean Salary Based On Country
     """
     )
-
-    data = df.groupby(["Country"])["Salary"].mean().sort_values(ascending=True)
-    st.bar_chart(data)
+    #
+    # data = df.groupby(["Country"])["Salary"].mean().sort_values(ascending=True)
+    # st.bar_chart(data)
 
 
     country_mean_salary_map = df.groupby("Country", as_index=False)["Salary"].mean()
@@ -95,3 +86,14 @@ def viewData():
     fig2.update_geos(projection_type="natural earth")
     fig2.update_layout(geo=dict(showframe=False, showcoastlines=True))
     st.plotly_chart(fig2)
+
+
+
+    st.write(
+        """
+    #### Mean Salary Based On Experience
+    """
+    )
+
+    data = df.groupby(["YearsCodePro"])["Salary"].mean().sort_values(ascending=True)
+    st.line_chart(data)
