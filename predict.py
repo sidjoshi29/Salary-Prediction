@@ -57,7 +57,7 @@ def viewPage():
         X = X.astype(float)
 
         salary = loaded.predict(X)
-        st.write(f"The Estimated SALARY is ${salary[0]}.")
+        st.write(f"The Estimated SALARY is ${salary[0]:,.2f}.")
 
 
 
