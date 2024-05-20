@@ -16,7 +16,7 @@ country = data["le_country"]
 education = data["le_education"]
 
 def viewPage():
-    st.title("SDE Salary Predictor")
+    st.title("SWE Salary Predictor")
     st.write("""### Input Information to predict the salary""")
 
     country_list = (
@@ -51,13 +51,16 @@ def viewPage():
 
     btn = st.button("Predict the Salary using the above data")
     if(btn) :
-        X = np.array([[country_selected, education_selected, experience_selected]])
-        X[:, 0] = country.transform(X[:, 0])
-        X[:, 1] = education.transform(X[:, 1])
-        X = X.astype(float)
+        try:
+            X = np.array([[country_selected, education_selected, experience_selected]])
+            X[:, 0] = country.transform(X[:, 0])
+            X[:, 1] = education.transform(X[:, 1])
+            X = X.astype(float)
 
-        salary = loaded.predict(X)
-        st.write(f"The Estimated SALARY is ${salary[0]:,.2f}.")
+            salary = loaded.predict(X)
+            st.write(f"The Estimated Salary is ${salary[0]:,.2f}.")
 
+        except ValueError:
+            st.error("Please enter a valid number for years of experience [0,50].")
 
 

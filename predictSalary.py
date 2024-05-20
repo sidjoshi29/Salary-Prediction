@@ -24,10 +24,10 @@ df = df[df["Employment"] == "Employed full-time"]
 df = df.drop("Employment", axis=1)
 
 # countries with less than 400 respondents into 'Other' category
-def clean_countries(count, cutoff):
+def clean_countries(count, threshold):
     categorical_map = {}
     for i in range(len(count)):
-        if count.values[i] >= cutoff:
+        if count.values[i] >= threshold:
             categorical_map[count.index[i]] = count.index[i]
         else:
             categorical_map[count.index[i]] = 'Other'
@@ -37,7 +37,7 @@ country_map = clean_countries(df.Country.value_counts(), 400)
 df['Country'] = df['Country'].map(country_map)
 
 # Filter salary ranges between 30k and 250k and exclude 'Other' countries
-df = df[df["Salary"] <= 250000]
+df = df[df["Salary"] <= 500000]
 df = df[df["Salary"] >= 6500]
 df = df[df['Country'] != 'Other']
 
